@@ -7,8 +7,10 @@ import customtkinter
 #Sets the download directory to the user's downloads folder (by default)
 downloadDirectory = os.path.join(os.path.expanduser("~"), "Downloads")
 
-#Method for downloading video and audio as an mp4 - downloads highest resolution
 def downloadVideo():
+    """
+    Downloads the video given the link in the entry box and saves it to the download directory (by default the user's downloads folder). Saves as mp4 file
+    """
     try:
         yt = YouTube(linkEntry.get())
         video = yt.streams.get_highest_resolution()
@@ -18,9 +20,10 @@ def downloadVideo():
     except:
         downloadedLabel.configure(text="Error Downloading Video!", text_color="red")
 
-
-#Method for downloading audio as an mp4
 def downloadAudio():
+    """
+    Downloads the audio of video given the link in the entry box and saves it to the download directory (by default the user's downloads folder). Saves as mp4 file
+    """
     try:
         yt = YouTube(linkEntry.get())
         audio = yt.streams.get_audio_only()
@@ -29,8 +32,10 @@ def downloadAudio():
     except:
         downloadedLabel.configure(text="Error Downloading Audio!", text_color="red")
 
-#Methood for changing the download directory. Does not recognize if an invalid directory is entered! Current bug
 def changeDownloadDirectory():
+    """
+    Changes the download directory to the directory entered in the entry box. Currently does not recognize if entered directory does not exist. 
+    """
     global downloadDirectory
     try:
         downloadDirectory = os.path.join(os.path.expanduser("~"), downloadDirectVar.get())
@@ -46,7 +51,6 @@ app.geometry("720x480")
 app.title("YouTube Audio/Video Downloader")
 
 #GUI UI Elements
-
 title = customtkinter.CTkLabel(app, text="YouTube Audio/Video Downloader", font=("Arial", 24))
 title.pack(padx=20, pady=20)
 
